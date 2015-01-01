@@ -9,14 +9,16 @@ var LibraryEntryView = Backbone.View.extend({
   tagName: 'tr',
 
   // creating a user facing queue/dequeue option with a + or - that renders on change in the LibraryView initialize function
-  template: _.template('<td class="artist">(<%= artist %>)</td> \
+   template: _.template('<td class="artist">(<%= artist %>)</td> \
                         <td class="title"><%= title %></td> \
                         <td class="<% if(queued) print("deq"); else print("enq"); %>"> \
                           <% if(queued) { print("-") } else { print("+") } %> \
                         </td>'),
 
 
-  // when clicking on the + or -, enqueues or dequeues
+  // when clicking on the + or -, enqueues or dequeues song
+  // this is the 'controller' part of the view.  takes a user input, passes it along as enqueue or dequeue
+  // event emitter can be triggered to emit an event, the listener hears the event, then invokes the event handler.
   events: {
     'click': function(e) {
       if(e.target.className === 'enq') {
