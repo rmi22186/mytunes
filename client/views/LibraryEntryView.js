@@ -1,18 +1,22 @@
 // LibraryEntryView.js - Defines a backbone view class for the entries that will appear within the library views. These will be inserted using the "subview" pattern.
 var LibraryEntryView = Backbone.View.extend({
 
+
   initialized: function () {
-    this.model.on('change', this.render, this);
+    // this.model.on('change', this.render, this);
   },
 
   tagName: 'tr',
 
+  // creating a user facing queue/dequeue option with a + or - that renders on change in the LibraryView initialize function
   template: _.template('<td class="artist">(<%= artist %>)</td> \
                         <td class="title"><%= title %></td> \
                         <td class="<% if(queued) print("deq"); else print("enq"); %>"> \
                           <% if(queued) { print("-") } else { print("+") } %> \
                         </td>'),
 
+
+  // when clicking on the + or -, enqueues or dequeues
   events: {
     'click': function(e) {
       if(e.target.className === 'enq') {

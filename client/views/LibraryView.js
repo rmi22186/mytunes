@@ -3,6 +3,7 @@ var LibraryView = Backbone.View.extend({
 
   tagName: "table",
 
+  // listens for enqueue/dequeue change, rerenders LibraryView to change + to -'s and vice versa
   initialize: function() {
     this.render();
     this.collection.on('change', this.render, this);
