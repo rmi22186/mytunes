@@ -26,7 +26,7 @@ var AppModel = Backbone.Model.extend({
     }, this.get('songQueue'));
 
     //=== Immediate Play Event Listener ===
-    params.library.on('play', function(song){
+    params.library.on('playSong', function(song){
       this.set('currentSong', song);
     }, this);
   }

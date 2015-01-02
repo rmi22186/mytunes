@@ -22,7 +22,7 @@ var LibraryEntryView = Backbone.View.extend({
   events: {
     'click': function(e) {
       if(e.target.className === 'enq') {
-        this.model.enqueue();
+        this.model.enqueue(); 
       } else if (e.target.className === 'deq') {
         this.model.dequeue();
       } else {

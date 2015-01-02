@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>I have a back bone</title>
+    <script src="http://ajax.googleapis.com/aja..."></script>
+    <script src="http://ajax.cdnjs.com/ajax/lib..."></script>
+    <script src="http://ajax.cdnjs.com/ajax/lib..."></script>
+  </head>
+  <body>
+    <script type="text/template" id="search_template">
+      <label><%=search_label%> </label>
+      <input type="text" id="search_input"/>
+      <input type="button" id="search_button" value="Search"/>
+      <input type="button" id="clear_button" value="Clear"/>
+    </script>
+    <div id="search_container">
+    </div>
+    <script type="text/javascript">
+      SearchView = Backbone.View.extend({
+        initialize: function(){
+          this.render();
+        },
+        render: function(){
+          //Pass variables in using Underscore.js Template
+          var variables = { search_label: "My Search" };
+          // Compile the template using underscore
+          var template = _.template( $("#search_template").html(), variables );
+          // Load the compiled HTML into the Backbone "el"
+          this.el.html( template );
+        },
+        /*events: {
+        //"click input[type=button]": "doSearch"
+        "click #search_button": "doSearch"
+        }, */
+        events: {"click #search_button": "doSearch" , "click #clear_button": "doClear"},
+        doSearch: function( event ){
+        // Button clicked, you can access the element that was clicked with event.currentTarget
+          alert( "Search for " + $("#search_input").val() );
+        },
+        doClear: function( event ){
+        // Button clicked, you can access the element that was clicked with event.currentTarget
+        alert( "Cleared the search results" );
+        }
+      });
+      var search_view = new SearchView({ el: $("#search_container") });
+    </script> 
+  </body>
+</html>
